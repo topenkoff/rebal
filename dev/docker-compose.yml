@@ -1,0 +1,84 @@
+services:
+
+  rebal:
+    build:
+      context: ../
+      dockerfile: dev/Dockerfile
+    networks:
+      rebal-net:
+        ipv4_address: 172.42.0.100
+
+  upstream_1:
+    image: python:3.11
+    volumes:
+      - ./upstream.py:/usr/src/upstream.py
+    command: python /usr/src/upstream.py
+    environment:
+      DELAY: 1
+    networks:
+      rebal-net:
+        ipv4_address: 172.42.0.11
+
+  upstream_2:
+    image: python:3.11
+    volumes:
+      - ./upstream.py:/usr/src/upstream.py
+    command: python /usr/src/upstream.py
+    environment:
+      DELAY: 1
+    networks:
+      rebal-net:
+        ipv4_address: 172.42.0.12
+
+  upstream_3:
+    image: python:3.11
+    volumes:
+      - ./upstream.py:/usr/src/upstream.py
+    command: python /usr/src/upstream.py
+    environment:
+      DELAY: 1
+    networks:
+      rebal-net:
+        ipv4_address: 172.42.0.13
+
+  upstream_4:
+    image: python:3.11
+    volumes:
+      - ./upstream.py:/usr/src/upstream.py
+    command: python /usr/src/upstream.py
+    environment:
+      DELAY: 1
+    networks:
+      rebal-net:
+        ipv4_address: 172.42.0.14
+
+  upstream_5:
+    image: python:3.11
+    volumes:
+      - ./upstream.py:/usr/src/upstream.py
+    command: python /usr/src/upstream.py
+    environment:
+      DELAY: 1
+    networks:
+      rebal-net:
+        ipv4_address: 172.42.0.15
+
+  test_serv:
+    image: python:3.11
+    volumes:
+      - ./test.sh:/usr/test.sh
+      - ./test.py:/test.py
+    command: /bin/bash /usr/test.sh
+    logging:
+      driver: "none"
+    networks:
+      rebal-net:
+        ipv4_address: 172.42.0.21
+
+networks:
+  rebal-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.42.0.0/24

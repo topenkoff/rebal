@@ -1,0 +1,15 @@
+listener:
+  address: 172.42.0.100
+  port: 5000
+
+upstream:
+  - address: 172.42.0.11
+    port: 5000
+  - address: 172.42.0.12
+    port: 5000
+  - address: 172.42.0.13
+    port: 5000
+  - address: 172.42.0.14
+    port: 5000
+  - address: 172.42.0.15
+    port: 5000
