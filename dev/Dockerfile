@@ -1,7 +1,7 @@
 FROM rust:latest as builder
 WORKDIR /usr/src/rebal
 RUN mkdir src
-RUN echo "fn main() {}" >> src/main.rs
+RUN echo "fn main() {}" > src/main.rs
 COPY Cargo.toml Cargo.lock .
 RUN cargo install --path .
 COPY . .
