@@ -1,4 +1,18 @@
 #[derive(serde::Deserialize, Debug)]
+pub struct Server {
+    pub strategy: LbStrategy,
+    pub listener: Listener,
+    pub upstreams: Vec<Upstream>,
+}
+
+#[derive(serde::Deserialize, Debug)]
+#[serde(rename_all = "snake_case")]
+pub enum LbStrategy {
+    RoundRobin,
+    LeastConnection,
+}
+
+#[derive(serde::Deserialize, Debug)]
 pub struct Upstream {
     address: String,
     port: u16,
@@ -30,8 +44,7 @@ impl Listener {
 
 #[derive(serde::Deserialize, Debug)]
 pub struct Config {
-    pub listener: Listener,
-    pub upstream: Vec<Upstream>,
+    pub server: Server,
 }
 
 impl Default for Config {

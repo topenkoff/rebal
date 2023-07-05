@@ -16,6 +16,6 @@ def send():
         print(f"time = {e}")
 
 executor = pool.ThreadPoolExecutor(max_workers=5)
-for _ in range(1, 1000):
+for _ in range(1, 10_000):
     executor.submit(send)
 
