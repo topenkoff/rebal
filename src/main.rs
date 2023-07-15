@@ -3,6 +3,7 @@ use anyhow::Result;
 use rebal::config::{Config, LbStrategy};
 use rebal::pool::Pool;
 use rebal::server::Server;
+use rebal::server::Serve;
 
 #[tokio::main]
 async fn main() -> Result<()> {

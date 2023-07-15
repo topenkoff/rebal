@@ -5,6 +5,13 @@ use crate::pool::{Pool, ToSock};
 use crate::strategy::Strategy;
 use crate::tunnel::Tunnel;
 
+pub trait Serve {
+    async fn serve<U, S>(self, pool: Pool<U, S>) -> Result<()>
+    where
+        U: ToSock,
+        S: Strategy<Upstream = U>;
+}
+
 pub struct Server<'a> {
     addr: &'a str,
 }
@@ -13,8 +20,10 @@ impl<'a> Server<'a> {
     pub fn new(addr: &'a str) -> Self {
         Self { addr }
     }
+}
 
-    pub async fn serve<U, S>(self, pool: Pool<U, S>) -> Result<()>
+impl<'a> Serve for Server<'a> {
+    async fn serve<U, S>(self, pool: Pool<U, S>) -> Result<()>
     where
         U: ToSock,
         S: Strategy<Upstream = U>,

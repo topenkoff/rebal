@@ -3,7 +3,8 @@ services:
   rebal:
     build:
       context: ../
-      dockerfile: dev/Dockerfile
+      #dockerfile: dev/Dockerfile
+      dockerfile: dev/nightly.Dockerfile
     networks:
       rebal-net:
         ipv4_address: 172.42.0.100
