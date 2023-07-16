@@ -8,7 +8,7 @@ force:
 	    && docker-compose -p rebal -f dev/docker-compose.yml up --build
 
 run:
-	docker-compose -p rebal -f dev/docker-compose.yml up --build
+	FEATURES="${FEATURES}" docker-compose -p rebal -f dev/docker-compose.yml up --build
 
 test:
-	docker exec -it $$(docker ps | grep test_serv | awk '{print $$1}') python test.py
+	docker exec -it $$(docker ps | grep test_serv | awk '{print $$1}') python test.py ${ARG}

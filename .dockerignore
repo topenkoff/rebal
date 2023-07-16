@@ -1,1 +1,4 @@
 target
+dev
+!dev/config.yml
+Makefile

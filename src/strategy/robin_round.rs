@@ -15,7 +15,7 @@ where
     pub fn new() -> Self {
         Self {
             current: Mutex::new(0),
-            _p: PhantomData::default(),
+            _p: PhantomData,
         }
     }
 }

@@ -5,6 +5,8 @@ services:
       context: ../
       #dockerfile: dev/Dockerfile
       dockerfile: dev/nightly.Dockerfile
+      args:
+          FEATURES: ${FEATURES}
     networks:
       rebal-net:
         ipv4_address: 172.42.0.100
